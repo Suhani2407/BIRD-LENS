@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{url_for('static', filename = 'css/style.css')}}" rel="stylesheet">
+    <title>Bird Image Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0f9;
+            background-image: url("static/frontend/BG4.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            padding: 30px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            gap: 65px;
+        }
+        #container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e7f3f276;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display:flex ;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            flex-direction:column;
+        }
+        .topcontainor {
+            display:flex;
+            justify-content: center;
+            align-content: center;
+            flex-direction:column;
+            gap:30px;
+        
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        #image-upload {
+            margin-bottom: 20px;
+        }
+        #image-preview {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            display: none;
+        }
+        #species-label {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        #bird-photo {
+            max-width: 100%;
+            margin-top: 20px;
+            /* display: none; */
+        }
+        #search-button:disabled{
+            background-color: #333;
+            cursor:not-allowed;
+        }
+        #search-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+
+        }
+        #search-button:hover {
+            background-color: #0056b3;
+        }
+        #search-results {
+            margin-top: 20px;
+            text-align: left;
+            /* display: none; */
+        }
+        .aboutus{
+            letter-spacing:5px;
+            text-transform: uppercase;
+           font-size: 10px;
+           font-weight: 300;
+           font-family: 'Courier New', Courier, monospace;
+
+        }
+        .centered-heading {
+            text-align: center;
+            font: 2em sans-serif;
+            
+          }
+          
+
+
+    </style>
+</head>
+<body>
+    <div id="wallpaper-container">
+        <!-- Your website content goes here -->
+      </div>
+
+      <link rel="stylesheet" type="text/css" href="static/css/style.css ">
+      
+
+      <div class="centered-heading">
+        <h1><i>Bird Lens</i></h1>
+
+      </div>
+    
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="topcontainor" >
+            <div id="container">
+                <h1><i>Bird Recognition</i></h1>
+                <div id="image-upload">
+                    
+                    <input id="upload-button" value ="upload image" type="file" name="file"/>
+                </div>
+                <!-- <img id="image-preview" src="" alt="Uploaded Bird Image"> -->
+                <p>Upload the image of bird you wanna search </p>
+                <div id="species-label"><span id="species-name"></span></div>
+                <!-- <img id="bird-photo" src="" alt="Bird Photo"> -->
+                <button id="search-button" type="submit"><i>Search</i></button>
+            </div>
+            {% if pic %}
+                <div id="container">
+                    <h1><i>   Bird  info   </i></h1>
+                    
+                    <!-- <img id="image-preview" src="" alt="Uploaded Bird Image"> -->
+                
+                    <img id="bird-photo" src="{{url_for('static', filename='user_uploads/'+pic)}}" alt="Bird Photo">
+                    
+                    <div id="species-label"><span id="species-name"></span></div>
+                    <div id="search-results">
+                            <h3><center>{{title}}</center></h3>
+                            <br>
+                            {{summary}}
+                            <br>
+                            <br>
+                            <i>Source:</i>
+                            <a href="{{src}}" target="_blank">wiki</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>  
+    </form>
+
+    <script>
+        // JavaScript functionality for your frontend can be added here
+    </script>
+    <div class="aboutus"><h1>ABOUT US</h1><h2><i>this is an image recognition based website for birds. It takes input of images of birds, uses a classification model to identify bird species and provide information regrading them .</i> </h2></div>
+</body>
+</html>
